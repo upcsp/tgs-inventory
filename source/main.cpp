@@ -60,7 +60,8 @@ int main(int argc, char *argv[])
     if (!createConnection())
         return 1;
 
-    TableEditor editor("person");
+    TableEditor editor("tgs");
+    editor.resize(1100, 500);
     editor.show();
     return app.exec();
 }

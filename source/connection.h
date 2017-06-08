@@ -56,14 +56,6 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
-/*
-    This file defines a helper function to open a connection to an
-    in-memory SQLITE database and to create a test table.
-
-    If you want to use another database, simply modify the code
-    below. All the examples in this directory use this function to
-    connect to a database.
-*/
 //! [0]
 static bool createConnection()
 {
@@ -78,48 +70,21 @@ static bool createConnection()
                      "Click Cancel to exit."), QMessageBox::Cancel);
         return false;
     }
-
-    QSqlQuery query;
-    query.exec("create table person (id int primary key, "
-               "firstname varchar(20), lastname varchar(20))");
-    query.exec("insert into person values(101, 'Danny', 'Young')");
-    query.exec("insert into person values(102, 'Christine', 'Holand')");
-    query.exec("insert into person values(103, 'Lars', 'Gordon')");
-    query.exec("insert into person values(104, 'Roberto', 'Robitaille')");
-    query.exec("insert into person values(105, 'Maria', 'Papadopoulos')");
-
-    query.exec("create table items (id int primary key,"
-                                             "imagefile int,"
-                                             "itemtype varchar(20),"
-                                             "description varchar(100))");
-    query.exec("insert into items "
-               "values(0, 0, 'Qt',"
-               "'Qt is a full development framework with tools designed to "
-               "streamline the creation of stunning applications and  "
-               "amazing user interfaces for desktop, embedded and mobile "
-               "platforms.')");
-    query.exec("insert into items "
-               "values(1, 1, 'Qt Quick',"
-               "'Qt Quick is a collection of techniques designed to help "
-               "developers create intuitive, modern-looking, and fluid "
-               "user interfaces using a CSS & JavaScript like language.')");
-    query.exec("insert into items "
-               "values(2, 2, 'Qt Creator',"
-               "'Qt Creator is a powerful cross-platform integrated "
-               "development environment (IDE), including UI design tools "
-               "and on-device debugging.')");
-    query.exec("insert into items "
-               "values(3, 3, 'Qt Project',"
-               "'The Qt Project governs the open source development of Qt, "
-               "allowing anyone wanting to contribute to join the effort "
-               "through a meritocratic structure of approvers and "
-               "maintainers.')");
-
-    query.exec("create table images (itemid int, file varchar(20))");
-    query.exec("insert into images values(0, 'images/qt-logo.png')");
-    query.exec("insert into images values(1, 'images/qt-quick.png')");
-    query.exec("insert into images values(2, 'images/qt-creator.png')");
-    query.exec("insert into images values(3, 'images/qt-project.png')");
+//    only to be used in order to write data into the db
+//    QSqlQuery query;
+//    query.exec("create table tgs (id int primary key, "
+//               "sys_name varchar(20), cat varchar(20), price int, purchase_date date,"
+//               "company varchar(20), end_guarantee_date date, last_edit date, user_manual varchar(50))");
+//    query.exec("insert into tgs values(101, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', '2N2222A')");
+//    query.exec("insert into tgs values(102, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'RELAY_TERMINOLOGY_LOOK_TIME_IMAGE')");
+//    query.exec("insert into tgs values(103, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'UHF_antenna')");
+//    query.exec("insert into tgs values(104, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'TRUE')");
+//    query.exec("insert into tgs values(105, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'TRUE')");
+//    query.exec("insert into tgs values(106, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'TRUE')");
+//    query.exec("insert into tgs values(107, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'TRUE')");
+//    query.exec("insert into tgs values(108, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'TRUE')");
+//    query.exec("insert into tgs values(109, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'TRUE')");
+//    query.exec("insert into tgs values(110, 'Dannye 233', 'Young', 100, '20170101', 'NI', '20190101', '20190101', 'TRUE')");
 
     return true;
 }

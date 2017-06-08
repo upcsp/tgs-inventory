@@ -52,6 +52,8 @@
 #define TABLEEDITOR_H
 
 #include <QDialog>
+#include <QTableView>
+#include "ui_tableeditor.h"
 
 QT_BEGIN_NAMESPACE
 class QDialogButtonBox;
@@ -66,15 +68,19 @@ class TableEditor : public QWidget
 
 public:
     explicit TableEditor(const QString &tableName, QWidget *parent = 0);
-
+    QTableView *view;
 private slots:
     void submit();
-
+    void add();
+    void deleteROW();
+    void onTableClicked(const QModelIndex &index);
 private:
     QPushButton *submitButton;
-    QPushButton *revertButton;
+    QPushButton *addButton;
     QPushButton *quitButton;
+    QPushButton *deleteButton;
     QDialogButtonBox *buttonBox;
+//    Ui::TableEditor ui;
     QSqlTableModel *model;
 };
 //! [0]
