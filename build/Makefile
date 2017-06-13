@@ -793,6 +793,8 @@ moc_tableeditor.cpp: ../../../Qt/5.9/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.9/gcc_64/include/QtCore/QSignalMapper \
+		../../../Qt/5.9/gcc_64/include/QtCore/qsignalmapper.h \
 		ui_tableeditor.h \
 		../../../Qt/5.9/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/QAction \
@@ -972,6 +974,8 @@ main.o: ../source/main.cpp ../../../Qt/5.9/gcc_64/include/QtWidgets/QApplication
 		../../../Qt/5.9/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.9/gcc_64/include/QtCore/QSignalMapper \
+		../../../Qt/5.9/gcc_64/include/QtCore/qsignalmapper.h \
 		ui_tableeditor.h \
 		../../../Qt/5.9/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/QAction \
@@ -1452,6 +1456,7 @@ tableeditor.o: ../source/tableeditor.cpp ../../../Qt/5.9/gcc_64/include/QtWidget
 		../source/tableeditor.h \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/QTableView \
+		../../../Qt/5.9/gcc_64/include/QtCore/QSignalMapper \
 		ui_tableeditor.h \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/QAction \
 		../../../Qt/5.9/gcc_64/include/QtWidgets/QApplication \
