@@ -31,7 +31,7 @@ TableEditor::TableEditor(const QString &tableName, QWidget *parent)
 //    ButtonColumnDelegate *delegate = new ButtonColumnDelegate(view);
 //    view->setItemDelegate(delegate);
 
-    submitButton = new QPushButton(tr("Submit"));
+    submitButton = new QPushButton(tr("Save"));
     submitButton->setDefault(true);
     addButton = new QPushButton(tr("Add Item"));
     deleteButton = new QPushButton(tr("Delete Selected"));
@@ -52,9 +52,18 @@ TableEditor::TableEditor(const QString &tableName, QWidget *parent)
     connect(mapper_find, SIGNAL(mapped(int)), this, SLOT(find(int)));
     connect(mapper_open, SIGNAL(mapped(int)), this, SLOT(open(int)));
 
-    QHBoxLayout *mainLayout = new QHBoxLayout;
-    mainLayout->addWidget(view);
-    mainLayout->addWidget(buttonBox);
+    mainLayout = new QVBoxLayout;
+    secLayout = new QHBoxLayout;
+    statusBar = new QStatusBar;
+    statusLabel = new QLabel(this);
+    statusLabel->setText("Status Bar");
+
+    statusBar->addPermanentWidget(statusLabel);
+
+    secLayout ->addWidget(view);
+    secLayout->addWidget(buttonBox);
+    mainLayout->addLayout(secLayout);
+    mainLayout->addWidget(statusBar);
     setLayout(mainLayout);
 
     setWindowTitle(tr("TGS Inventory"));
@@ -64,6 +73,7 @@ TableEditor::TableEditor(const QString &tableName, QWidget *parent)
 
 void TableEditor::submit()
 {
+    statusBar->showMessage("Saving...", 2000);
     model->database().transaction();
     if (model->submitAll()) {
         model->database().commit();
@@ -74,9 +84,11 @@ void TableEditor::submit()
                              .arg(model->lastError().text()));
     }
     putButtons();
+    statusBar->showMessage("Saved",2000);
 }
 void TableEditor::add()
 {
+    submit();
     QSqlQuery query;
     int id;
     query.exec("SELECT MAX(id) FROM tgs");
@@ -163,6 +175,7 @@ void TableEditor::find(int index)
       qDebug() << query.lastError();
     else
       qDebug( "Updated filename!" );
+    submit();
     model->select();
     view -> setModel(model);
     putButtons();

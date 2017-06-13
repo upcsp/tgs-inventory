@@ -4,6 +4,10 @@
 #include <QDialog>
 #include <QTableView>
 #include <QSignalMapper>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QStatusBar>
+#include <QLabel>
 #include "ui_tableeditor.h"
 
 QT_BEGIN_NAMESPACE
@@ -40,6 +44,10 @@ private:
     QSqlTableModel *model;
     QSignalMapper *mapper_find;
     QSignalMapper *mapper_open;
+    QVBoxLayout *mainLayout;
+    QHBoxLayout *secLayout;
+    QStatusBar* statusBar;
+    QLabel *statusLabel;
 };
 
 #endif
