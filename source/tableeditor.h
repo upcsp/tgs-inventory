@@ -20,6 +20,7 @@ public:
     explicit TableEditor(const QString &tableName, QWidget *parent = 0);
     QTableView *view;
     void putButtons();
+    void parseData();
 private slots:
     void submit();
     void add();

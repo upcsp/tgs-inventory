@@ -2,26 +2,26 @@
 #include <QtSql>
 
 #include "tableeditor.h"
+#include "sqlmodelsubclass.h"
 
 TableEditor::TableEditor(const QString &tableName, QWidget *parent)
     : QWidget(parent)
 {
 
-    model = new QSqlTableModel(this);
+    model = new MyTableModel(this);
     model->setTable(tableName);
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
 //    model->setHeaderData(0, Qt::Horizontal, tr("ID"));
     model->setHeaderData(1, Qt::Horizontal, tr("System name"));
     model->setHeaderData(2, Qt::Horizontal, tr("Category"));
-    model->setHeaderData(3, Qt::Horizontal, tr("Price"));
+    model->setHeaderData(3, Qt::Horizontal, tr("Price €"));
     model->setHeaderData(4, Qt::Horizontal, tr("Purchase Date"));
     model->setHeaderData(5, Qt::Horizontal, tr("Company"));
     model->setHeaderData(6, Qt::Horizontal, tr("Guarantee-end Date"));
     model->setHeaderData(7, Qt::Horizontal, tr("Last-Manipulation"));
     model->setHeaderData(8, Qt::Horizontal, tr("..."));
     model->setHeaderData(9, Qt::Horizontal, tr("User Manual"));
-
 
     view = new QTableView;
     view->setModel(model);
@@ -59,6 +59,7 @@ TableEditor::TableEditor(const QString &tableName, QWidget *parent)
 
     setWindowTitle(tr("TGS Inventory"));
     putButtons();
+//    parseData();
 }
 
 void TableEditor::submit()
@@ -72,6 +73,7 @@ void TableEditor::submit()
                              tr("The database reported an error: %1")
                              .arg(model->lastError().text()));
     }
+    putButtons();
 }
 void TableEditor::add()
 {
@@ -81,7 +83,7 @@ void TableEditor::add()
     query.next();
     id = query.value(0).toInt() + 1;
 
-    query.prepare("insert into tgs values(:id, 'sys', 'cat', 0, '20170101', 'company', '20190101', '20190101', '...','Open')");
+    query.prepare("insert into tgs values(:id, 'sys', 'cat', 0, '01.01.2017', 'company', '01.05.2017', '01.01.2019', '...','Open')");
     query.bindValue(":id",id);
     query.exec();
     model->select();
@@ -196,3 +198,22 @@ void TableEditor::putButtons()
         mapper_open->setMapping(openButton, i); // Number to be passed in the slot
  }
 }
+
+
+//void TableEditor::parseData()
+//{
+//    QSqlQuery query;
+//    query.exec("SELECT COUNT(*) FROM tgs");
+//    query.next();
+
+//    int last_row = query.value(0).toInt();
+//    query.exec("SELECT purchase_date, end_guarantee_date, last_edit FROM tgs");
+//    for (int i=0; i<last_row; i++) {
+//        query.next();
+//        QDate purchase_date = QDate::fromString(query.value(0).toInt(), "yyyyMMdd");
+//        QDate end_guarantee_date = QDate::fromString(query.value(1).toInt(), "yyyyMMdd");
+//        QDate last_edit = QDate::fromString(query.value(2).toInt(), "yyyyMMdd");
+//        qDebug() << date.toString("dd.MM.yyyy");
+//        qDebug() << query.value(1).toInt();
+//    }
+//}

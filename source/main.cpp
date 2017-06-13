@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "connection.h"
 #include "tableeditor.h"
+#include "sqlmodelsubclass.h"
 
 int main(int argc, char *argv[])
 {
